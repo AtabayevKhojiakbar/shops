@@ -20,5 +20,6 @@ Route::get('/dashboard', function () {
 Route::resource('history',\App\Http\Controllers\HistoryController::class);
 Route::resource('shop',\App\Http\Controllers\ObjectController::class);
 Route::resource('products',\App\Http\Controllers\ProductController::class);
+Route::resource('users',\App\Http\Controllers\UserController::class);
 
 require __DIR__.'/auth.php';

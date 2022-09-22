@@ -8,7 +8,7 @@
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('history.index') ? 'active' : '' }}" href="{{route('history.index')}}"><i class="fas fa-tachometer-alt"></i><span>Histories</span></a></li>
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('shop.index') ? 'active' : '' }}" href="{{route('shop.index')}}"><i class="fas fa-user"></i><span>Objects</span></a></li>
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('products.index') ? 'active' : '' }}" href="{{route('products.index')}}"><i class="fas fa-table"></i><span>Products</span></a></li>
-            <li class="nav-item"><a class="nav-link {{  request()->routeIs('products.index') ? 'active' : '' }}" href=""><i class="far fa-user-circle"></i><span>Login</span></a></li>
+            <li class="nav-item"><a class="nav-link {{  request()->routeIs('users.index') ? 'active' : '' }}" href="{{route('users.index')}}"><i class="far fa-user-circle"></i><span>Users</span></a></li>
         </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>
