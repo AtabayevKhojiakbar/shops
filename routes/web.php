@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('history.index');
 })->middleware(['auth'])->name('dashboard');
 Route::resource('history',\App\Http\Controllers\HistoryController::class);
 Route::resource('shop',\App\Http\Controllers\ObjectController::class);
