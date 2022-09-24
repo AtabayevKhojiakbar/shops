@@ -19,6 +19,6 @@ Route::resource('history',\App\Http\Controllers\HistoryController::class);
 Route::resource('shop',\App\Http\Controllers\ObjectController::class);
 Route::resource('products',\App\Http\Controllers\ProductController::class);
 Route::resource('users',\App\Http\Controllers\UserController::class);
-Route::resource('amallar',\App\Http\Controllers\AmalController::class);
+Route::get('/amallar',\App\Http\Controllers\AmalController::class);
 
 require __DIR__.'/auth.php';
