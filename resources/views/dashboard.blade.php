@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
-
+<body>
 
 <div id="wrapper">
 @include('sidebar')
@@ -33,11 +33,19 @@
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/chart.min.js')}}"></script>
 <script src="{{asset('assets/js/bs-init.js')}}"></script>
 <script src="{{asset('assets/js/theme.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#product1').select2();
+    });
+</script>
+
 </body>
 
 </html>

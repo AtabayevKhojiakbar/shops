@@ -2,7 +2,8 @@
 @section('content')
 
 <div class="card">
-    <form action="" method="post" class="form-control">
+    <form action="{{route('addproduct')}}" method="post" class="form-control">
+        @csrf
     <div class="container-fluid m-1">
         <label for="" class="form-label">Qayerdan</label>
         <select class="js-example-basic-single form-select ml-1" name="from" >
@@ -25,27 +26,26 @@
     </div>
     <div class="container-fluid m-1">
     <label for="" class="form-label mt-1">Mahsulot tanlang</label>
-    <select class="js-example-basic-single form-select ml-1" name="product" >
+        <div class="d-flex">
+    <select id="product1" class="form-control" name="product" >
         <option value="" selected disabled>Tanlang</option>
         @foreach($products as $product)
         <option value="{{$product->id}}">{{$product->name}}-{{$product->price}} So'm</option>
         @endforeach
     </select>
+            <a  onclick="maxsulotAdd()" class="btn btn-primary">Maxsulot qo'shish</a>
+        </div>
+        <input type="text" id="product_input1" name="product_name" class="form-control" style="display: none" placeholder="Maxsulot nomini kiriting:">
+        <input type="text" id="product_input2" name="product_price" class="form-control" style="display: none" placeholder="Maxsulot narxini kiriting:">
     </div>
+        <button  type="submit" class="btn btn-success m-1 hover:bg-gray-50">Saqlash</button>
     </form>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        // In your Javascript (external .js resource or  tag)
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
-
+<script>
+    function maxsulotAdd(){
+        document.getElementById("product_input1").style.display='block';
+        document.getElementById("product_input2").style.display='block';
+    }
+</script>
 @endsection
