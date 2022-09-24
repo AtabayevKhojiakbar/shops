@@ -9,6 +9,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Created</th>
+                <th>Amal</th>
             </tr>
             @foreach($users as $user)
             <tr align="center">
@@ -17,6 +18,10 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role}}</td>
                 <td>{{$user->created_at}}</td>
+                <td>
+                    <a class="btn btn-warning" href=""><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-danger" href=""><i class="fas fa-archive"></i></a>
+                </td>
             </tr>
             @endforeach
         </table>
