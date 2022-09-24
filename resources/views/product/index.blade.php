@@ -19,7 +19,7 @@
                 <th>{{$product->updated_at}}</th>
                 <th>{{$product->delete_at}}</th>
                 <th>
-                    <a class="btn btn-warning" href=""><i class="fas fa-pen"></i></a>
+                    <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fas fa-pen"></i></a>
                     <a class="btn btn-danger" href=""><i class="fas fa-archive"></i></a>
                 </th>
             </tr>
