@@ -10,6 +10,7 @@
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('products.index') ? 'active' : '' }}" href="{{route('products.index')}}"><i class="fas fa-table"></i><span>Mahsulotlar</span></a></li>
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('users.index') ? 'active' : '' }}" href="{{route('users.index')}}"><i class="far fa-user-circle"></i><span>Xodimlar</span></a></li>
             <li class="nav-item"><a class="nav-link {{  request()->routeIs('amallar.index') ? 'active' : '' }}" href="{{route('amallar.index')}}"><i class="far fa-calculator"></i><span>Amallar</span></a></li>
+            <li class="nav-item"><a class="nav-link {{  request()->routeIs('hisobot') ? 'active' : '' }}" href="{{route('hisobot')}}"><i class="far fa-calculator"></i><span>Hisobot</span></a></li>
         </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>

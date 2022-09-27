@@ -23,6 +23,7 @@ Route::get('/amallar',[\App\Http\Controllers\AmalController::class,'index'])->na
 Route::get('/amallar/kochirish',[\App\Http\Controllers\AmalController::class,'kochirish'])->name('amallar.kochirish');
 Route::get('/amallar/sotibolish',[\App\Http\Controllers\AmalController::class,'sotib_olish'])->name('amallar.sotib_olish');
 Route::get('/amallar/sotish',[\App\Http\Controllers\AmalController::class,'sotish'])->name('amallar.sotish');
+Route::get('/hisobot',[\App\Http\Controllers\HisobotController::class,'index'])->name('hisobot');
 Route::post('/addproduct',[\App\Http\Controllers\AmalController::class,'addProduct'])->name('addproduct');
 Route::post('/sellproduct',[\App\Http\Controllers\AmalController::class,'sellProduct'])->name('sellproduct');
 Route::post('/moveproduct',[\App\Http\Controllers\AmalController::class,'moveProduct'])->name('moveproduct');
