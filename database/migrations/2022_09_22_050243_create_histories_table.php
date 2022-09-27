@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('from');
-            $table->integer('to');
+            $table->integer('user_id')->default(1);
+            $table->string('from');
+            $table->string('to');
             $table->integer('product_id');
             $table->integer('price');
             $table->integer('count');
+            $table->string('status')->default('null');
             $table->dateTime('deleted_at');
             $table->timestamps();
         });

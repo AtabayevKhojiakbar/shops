@@ -15,7 +15,7 @@
                 <select id="product1" class="js-example-basic-single form-select ml-1" name="to" >
                     <option value="" selected disabled>Tanlang</option>
                     @foreach($shops as $shop )
-                        <option value="{{$shop->id}}">{{$shop->name}}</option>
+                        <option>{{$shop->name}}</option>
                     @endforeach
                 </select>
             </div>

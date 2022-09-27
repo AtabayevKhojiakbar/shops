@@ -16,11 +16,4 @@ class history extends Model
         return $this->belongsTo(Product::class,'product_id','id');
     }
 
-    public function shopFrom(){
-        return $this->belongsTo(Shop::class,'from','id');
-    }
-
-    public function shopTo(){
-        return $this->belongsTo(Shop::class,'to','id');
-    }
 }

@@ -7,6 +7,7 @@
                 <th>#</th>
                 <th>Nomi</th>
                 <th>Narxi</th>
+                <th>Soni</th>
                 <th>Yangilangan sana</th>
                 <th>O'chirilgan sana</th>
                 <th>Amal</th>
@@ -16,11 +17,16 @@
                 <th>{{$product->id}}</th>
                 <th>{{$product->name}}</th>
                 <th>{{$product->price}}</th>
+                <th>{{$product->count}}</th>
                 <th>{{$product->updated_at}}</th>
-                <th>{{$product->delete_at}}</th>
+                <th>{{$product->deleted_at}}</th>
                 <th>
-                    <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fas fa-pen"></i></a>
-                    <a class="btn btn-danger" href=""><i class="fas fa-archive"></i></a>
+                    <div class="d-flex">
+                    <a class="btn btn-warning m-1" href="{{route('products.edit',$product->id)}}"><i class="fas fa-pen"></i></a>
+                    <form action="{{route('productdelete',$product->id)}}" method="post">
+                        @csrf
+                        <button class="btn btn-danger m-1" ><i class="fas fa-archive"></i></button>
+                    </form>
                 </th>
             </tr>
             @endforeach

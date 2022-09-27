@@ -3,7 +3,7 @@
 
     <div class="card">
 
-        <form action="" method="post" class="form-control">
+        <form action="{{route('moveproduct')}}" method="post" class="form-control">
             @csrf
             <h1 align="center" class="text-center text-bg-light">Ko'chirish</h1>
             <div class="container-fluid m-1">
@@ -11,7 +11,7 @@
                 <select class="js-example-basic-single form-select ml-1" name="from" >
                     <option value="" selected disabled>Tanlang</option>
                     @foreach($shops as $shop)
-                        <option value="{{$shop->id}}">{{$shop->name}}</option>
+                        <option>{{$shop->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -20,7 +20,7 @@
                 <select  class="js-example-basic-single form-select ml-1"  name="to" >
                     <option value="" selected disabled>Tanlang</option>
                     @foreach($shops as $shop )
-                        <option value="{{$shop->id}}">{{$shop->name}}</option>
+                        <option >{{$shop->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,11 +33,6 @@
                         <option value="{{$product->id}}">{{$product->name}}-{{$product->price}} So'm</option>
                     @endforeach
                 </select>
-                <div style="margin-left: 1032px; margin-top: 5px">
-                    <a  onclick="maxsulotAdd()" class="btn btn-primary ">Maxsulot qo'shish</a>
-                </div>
-                <input type="text" id="product_input1" name="product_name" class="form-control m-1" style="display: none" placeholder="Maxsulot nomini kiriting:">
-                <input type="text" id="product_input2" name="product_price" class="form-control m-1" style="display: none" placeholder="Maxsulot narxini kiriting:">
             </div>
             <button  type="submit" class="btn btn-success" style="margin-left: 30px">Saqlash</button>
         </form>
