@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('count');
             $table->string('status')->default('null');
-            $table->dateTime('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

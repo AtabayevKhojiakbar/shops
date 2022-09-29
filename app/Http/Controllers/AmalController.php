@@ -10,8 +10,15 @@ use Illuminate\Http\Request;
 class AmalController extends Controller
 {
     public function index(){
-        return view('amallar.index');
+        $shop = Shop::all();
+        $product = Product::where('deleted_at', '=', null)->get();
+//        dd($shop);
+        return view('amallar.index',[
+            'shops'=>$shop,
+            'products'=>$product
+        ]);
     }
+
     public function addProduct(Request $request){
         $productId=0;
         $all = Product::all();
@@ -51,7 +58,7 @@ class AmalController extends Controller
         }
     }
     public function sellProduct(Request $request){
-//        dd($request->product);
+//        dd($request);
         $count = 0;
         $id = $request->product;
         $product = Product::find($id);

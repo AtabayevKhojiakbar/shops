@@ -29,4 +29,5 @@ Route::post('/sellproduct',[\App\Http\Controllers\AmalController::class,'sellPro
 Route::post('/moveproduct',[\App\Http\Controllers\AmalController::class,'moveProduct'])->name('moveproduct');
 Route::post('/delete/{id}',[\App\Http\Controllers\AmalController::class,'delete'])->name('historydelete');
 Route::post('/pdelete/{id}',[\App\Http\Controllers\AmalController::class,'deleteProduct'])->name('productdelete');
+Route::resource('modal',\App\Http\Controllers\ModalController::class);
 require __DIR__.'/auth.php';
