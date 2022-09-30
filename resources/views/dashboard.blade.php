@@ -46,10 +46,10 @@
 
 <script>
     $(document).ready(function() {
-        $('#product1').select2();
+
     });
 </script>
-
+@yield('custom-js')
 </body>
 
 </html>

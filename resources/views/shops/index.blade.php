@@ -12,6 +12,7 @@
                 <th>Amal</th>
             </tr>
             @foreach($shops as $shop)
+                @if($shop->id<=2) @continue @endif
             <tr align="center">
                 <th>{{$shop->id}}</th>
                 <th>{{$shop->name}}</th>

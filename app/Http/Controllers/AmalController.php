@@ -10,52 +10,74 @@ use Illuminate\Http\Request;
 class AmalController extends Controller
 {
     public function index(){
+        $tahlil=[];
+
         $shop = Shop::all();
-        $product = Product::where('deleted_at', '=', null)->get();
-//        dd($shop);
+        foreach ($shop as $sh){
+            $tahlil[$sh->id]=[];
+            $tahlil[$sh->id]['data']['name']=$sh->name;
+            $tahlil[$sh->id]['data']['id']=$sh->id;
+        }
+        $product = Product::all();
+       for($i=0;$i<count($tahlil);$i++){
+           foreach ($product as $item) {
+               $a=[];
+               $a['id']=$item->id;
+               $a['name']=$item->name;
+               $a['count']=0;
+               $tahlil[$i][$item->id]=$a;
+           }
+       }
+
+
+        $data=history::all();
+        foreach ($data as $d) {
+            if($d->from==1){
+                $tahlil[$d->to][$d->product_id]['count']+=$d->count;
+            }
+            elseif ($d->to==2){
+                $tahlil[$d->from][$d->product_id]['count']-=$d->count;
+            }else{
+                $tahlil[$d->from][$d->product_id]['count']-=$d->count;
+                $tahlil[$d->to][$d->product_id]['count']+=$d->count;
+
+            }
+
+        }
+
+
+
+$tahlil=(object)$tahlil;
         return view('amallar.index',[
             'shops'=>$shop,
-            'products'=>$product
+            'products'=>$product,
+            'tahlil'=>$tahlil
         ]);
     }
 
     public function addProduct(Request $request){
         $productId=0;
-        $all = Product::all();
-        if(!isset($all[$request->product_name])) {
-            $pro = new Product();
-            $pro->name = $request->product_name;
-            $pro->price = $request->product_price;
-            $count = $pro->count;
-            $count += $request->count;
-            $pro->count = $count;
-            $pro->save();
-            $history = new history();
-            $history->from = $request->from;
-            $history->to = $request->to;
-            $history->product_id = $pro->id;
-            $history->price = $request->count * $request->product_price;
-            $history->status = 'Sotib olindi';
-            $history->count = $request->count;
-            $history->save();
-            return redirect()->route('history.index');
-//        $productId=$pro->id;
-//            dd($count);
+        if($request->is_new == 'no'){
+            $productId=$request->product_id;
         }else{
-            $pro = Product::find($request->product_name);
-            $pro->count = $pro->count + $request->count;
-            $pro->price = $request->product_price;
-            $pro->save();
-            $history = new history();
-            $history->from = $request->from;
-            $history->to = $request->to;
-            $history->product_id = $pro->id;
-            $history->price = $request->count * $request->product_price;
-            $history->status = 'Sotib olindi';
-            $history->count = $request->count;
-            $history->save();
-            return redirect()->route('history.index');
+            $p=new Product();
+            $p->name=$request->product_name;
+            $p->price=$request->product_price;
+            $p->save();
+            $productId=$p->id;
         }
+        $h=new history();
+        $h->user_id=auth()->user()->id;
+        $h->from=$request->from;
+        $h->to=$request->to;
+        $h->product_id=$productId;
+        $pro=Product::find($productId);
+        $h->price = $request->count * $pro->price;
+        $h->count=$request->count;
+        $h->status="Sotib olindi";
+        $h->save();
+        return redirect()->route('amallar.index');
+
     }
     public function sellProduct(Request $request){
 //        dd($request);
@@ -96,13 +118,15 @@ class AmalController extends Controller
     }
     public function sotib_olish(){
         $shop = Shop::all();
+        $products=Product::all();
         return view('amallar.sotib_olish',[
-            'shops'=>$shop
+            'shops'=>$shop,
+            'products'=>$products
         ]);
     }
     public function sotish(){
         $shop = Shop::all();
-        $product = Product::where('deleted_at', '=', null)->get();
+        $product = Product::all();
         return view('amallar.sotish',[
             'shops'=>$shop,
             'products'=>$product
