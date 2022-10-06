@@ -44,7 +44,7 @@
                                         <option value="{{$shop->id}}">{{$shop->name}}</option>
 
                                     @endforeach
-                                        <option value="0" selected >Tanlang</option>
+                                    <option value="0" selected>Tanlang</option>
                                 </select>
                             </div>
 
@@ -56,9 +56,9 @@
                                     <option value="" selected disabled>Tanlang</option>
                                     @foreach($products as $product)
 
-                                            <option value="{{$product->id}}">{{$product->name}}-{{$product->price}}
-                                                So'm
-                                            </option>
+                                        <option value="{{$product->id}}">
+                                            {{$product->name}}-{{$product->price}} So'm
+                                        </option>
 
                                     @endforeach
                                 </select>
@@ -94,26 +94,33 @@
                             @csrf
                             <div class="container-fluid m-1">
                                 <label for="" class="form-label">Qayerdan</label>
-                                <select class="js-example-basic-single form-select ml-1" name="from">
-                                    <option value="" selected disabled>Tanlang</option>
+                                <select class="js-example-basic-single form-select ml-1" id="kochirish_select"
+                                        name="from">
+                                    <option value="" selected>Tanlang</option>
                                     @foreach($shops as $shop)
-                                        <option>{{$shop->name}}</option>
+                                        @if($shop->id<=2)
+                                            @continue
+                                        @endif
+                                        <option value="{{$shop->id}}">{{$shop->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="container-fluid m-1">
                                 <label for="" class="form-label">Qayerga</label>
                                 <select class="js-example-basic-single form-select ml-1" name="to">
-                                    <option value="" selected disabled>Tanlang</option>
+                                    <option value="" selected>Tanlang</option>
                                     @foreach($shops as $shop )
-                                        <option>{{$shop->name}}</option>
+                                        @if($shop->id<=2)
+                                            @continue
+                                        @endif
+                                        <option value="{{$shop->id}}">{{$shop->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="container-fluid m-1">
                                 <label for="" class="form-label mt-1">Mahsulot tanlang</label>
-                                <select id="product1" class="form-control" name="product">
-                                    <option value="" selected disabled>Tanlang</option>
+                                <select id="kochirish_select2" class="form-control" name="product">
+                                    <option value="" selected>Tanlang</option>
                                     @foreach($products as $product)
                                         <option value="{{$product->id}}">{{$product->name}}-{{$product->price}}So'm
                                         </option>
@@ -157,7 +164,7 @@
                             <div class="container-fluid m-1">
                                 <label for="" class="form-label">Qayerga</label>
                                 <select id="product1" class="js-example-basic-single form-select ml-1" name="to">
-                                    <option value="" selected disabled>Tanlang</option>
+                                    <option value="" selected>Tanlang</option>
                                     @foreach($shops as $shop )
                                         @if($shop->id<=2)
                                             @continue
@@ -214,34 +221,54 @@
         </div>
     </div>
 
-
-
 @endsection
 @section('custom-js')
     <script>
-        let tahlil=@json($tahlil);
+        let tahlil =@json($tahlil);
         console.log(tahlil);
-        $(document).ready(function() {
+        $(document).ready(function () {
 
 
             $("#sotish_select").change(function () {
                 var value = $(this).val();
-                var tanlandi=tahlil[value];
-                var options='';
+                var tanlandi = tahlil[value];
+                var options = '';
                 var result = Object.keys(tanlandi).map((key) => [Number(key), tanlandi[key]]);
                 console.log(result);
-                var i=0;
-                for ( i=0;i<result.length-1;i++){
-                    if(result[i][1]['count']>0){
-                        options+="<option value='"+result[i][1]['id']+"'>"+result[i][1]['name']+"</option>";
+                var i = 0;
+                for (i = 0; i < result.length - 1; i++) {
+                    if (result[i][1]['count'] > 0) {
+                        options += "<option value='" + result[i][1]['id'] + "'>" + result[i][1]['name'] + "</option>";
 
                     }
                 }
 
 
-
                 console.log(options);
                 $("#sotish_select2").html(options);
+
+            });
+        });
+
+        $(document).ready(function () {
+
+
+            $("#kochirish_select").change(function () {
+                var value = $(this).val();
+                var tanlandi = tahlil[value];
+                var options = '';
+                var result = Object.keys(tanlandi).map((key) => [Number(key), tanlandi[key]]);
+                console.log(result);
+                var i = 0;
+                for (i = 0; i < result.length - 1; i++) {
+                    if (result[i][1]['count'] > 0) {
+                        options += "<option value='" + result[i][1]['id'] + "'>" + result[i][1]['name'] + "</option>";
+
+                    }
+                }
+
+                console.log(options);
+                $("#kochirish_select2").html(options);
 
             });
         });

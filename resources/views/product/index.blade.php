@@ -7,9 +7,7 @@
                 <th>#</th>
                 <th>Nomi</th>
                 <th>Narxi</th>
-                <th>Soni</th>
                 <th>Yangilangan sana</th>
-                <th>O'chirilgan sana</th>
                 <th>Amal</th>
             </tr>
             @foreach($products as $product)
@@ -17,9 +15,7 @@
                 <th>{{$product->id}}</th>
                 <th>{{$product->name}}</th>
                 <th>{{$product->price}}</th>
-                <th>{{$product->count}}</th>
                 <th>{{$product->updated_at}}</th>
-                <th>{{$product->deleted_at}}</th>
                 <th>
                     <div class="d-flex">
                     <a class="btn btn-warning m-1" href="{{route('products.edit',$product->id)}}"><i class="fas fa-pen"></i></a>
